@@ -7,8 +7,14 @@
         <image src="{{item.image_src}}" mode="widthFix"/>
       </navigator>
     </swiper-item>
-      
   </swiper>
-    
 </view>
 <!-- 轮播图 结束 -->
+
+<!-- 分类导航开始 -->
+<view class="index-nav-cate">
+  <navigator wx:for="{{navCateList}}" wx:key="name">
+    <image src="{{item.image_src}}" mode="widthFix" />
+  </navigator>
+</view>
+<!-- 分类导航结束 -->

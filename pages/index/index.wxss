@@ -1,4 +1,11 @@
 /* pages/index/index.wxss */
-.index-swiper swiper{
+.index-swiper swiper {
   height: 340rpx;
+}
+.index-nav-cate {
+  display: flex;
+}
+.index-nav-cate navigator {
+  flex: 1;
+  padding: 26rpx;
 }
