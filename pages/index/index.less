@@ -5,10 +5,54 @@
   }
 }
 
-.index-nav-cate{
+.index-nav-cate {
   display: flex;
-  navigator{
+
+  navigator {
     flex: 1;
     padding: 26rpx;
+  }
+}
+
+.index-floor {
+  .floor-item {
+    padding: 20rpx 0 0 0;
+
+    .floor-title {
+      padding: 10rpx 0;
+    }
+
+    .floor-content {
+      /* 清除浮动 */
+      overflow: hidden;
+      padding: 0 10rpx;
+
+      .goods-item {
+        width: 33.33%;
+        float: left;
+        /* 计算高度image height公式
+          原图片的宽度 * 原图片的高度 = 变化后的宽度 * 变化后的高度
+          232 * 386 = 750rpx/3 * ？
+          小图的高度 = 750rpx / 3 * 386 / 232 /2 
+        */
+
+        /* 后4个超链接 */
+        &:nth-last-child(-n+4) {
+          height: 750rpx / 3 * 386 / 232 / 2;
+          border-left: 10rpx solid #fff;
+
+          image {
+            /* 图片的高度是父盒子的高度 */
+            height: 100%;
+          }
+        }
+
+        /* 后2个超链接 */
+        &:nth-last-child(-n+2) {
+          border-top: 10rpx solid #fff;
+        }
+
+      }
+    }
   }
 }

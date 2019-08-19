@@ -18,3 +18,20 @@
   </navigator>
 </view>
 <!-- 分类导航结束 -->
+
+<!-- 商品楼层开始 -->
+<view class="index-floor">
+  <view class="floor-item" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="item">
+    <!-- 商品标题部分 -->
+    <view class="floor-title">
+      <image mode="widthFix" src="{{item1.floor_title.image_src}}"></image>
+    </view>
+    <!-- 商品内容部分 -->
+    <view class="floor-content">
+      <navigator wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="name" class="goods-item">
+        <image mode="{{index2===0?'widthFix':''}}" src="{{item2.image_src}}"></image>
+      </navigator>
+    </view>
+  </view>
+</view>
+<!-- 商品楼层结束 -->

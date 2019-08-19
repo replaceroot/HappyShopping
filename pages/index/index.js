@@ -7,12 +7,15 @@ Page({
     // 轮播图数组
     swiperList: [],
     // 分类导航数组
-    navCateList: []
+    navCateList: [],
+    // 楼层数组
+    floorList: []
   },
   // onLoad 页面开始加载
   onLoad() {
     this.getSwiperList();
     this.getNavCateList();
+    this.getFloorList();
   },
   // 获取轮播图数据方法
   getSwiperList() {
@@ -32,11 +35,23 @@ Page({
   getNavCateList() {
     wx.request({
       url: "https://api.zbztb.cn/api/public/v1/home/catitems",
-      
       success: result => {
-        console.log(result.data.message);
+        // console.log(result.data.message);
         this.setData({
           navCateList: result.data.message
+        });
+      }
+    });
+  },
+
+  // 获取楼层数据方法
+  getFloorList() {
+    wx.request({
+      url: "https://api.zbztb.cn/api/public/v1/home/floordata",
+      success: result => {
+        console.log(result.data.message)
+        this.setData({
+          floorList: result.data.message
         })
       }
     });
