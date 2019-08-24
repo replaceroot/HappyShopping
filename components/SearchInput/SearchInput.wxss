@@ -1,7 +1,7 @@
 .search-input {
   background-color: var(--themeColor);
   padding: 10rpx 20rpx;
-  height: 80rpx;
+  height: 90rpx;
 }
 
 .search-input navigator{

@@ -1,0 +1,62 @@
+/* pages/category/index.wxss */
+.cate_container{
+  padding-top: 5rpx;
+  display: flex;
+  /* 
+  当前的高度 = 视口的高度 - 头部搜索框的高度
+  height: calc;
+  因为less中 直接把触发运算执行了
+  不想less来处理calc中的代码，直接原样输出
+  */
+  height: ~"calc(100vh - 90rpx)";
+  
+  .left_menu{
+    flex: 1;
+    .menu_item{
+      height: 80rpx;
+      display: flex;
+      /* 水平垂直居中对齐 */
+      justify-content: center;
+      align-items: center;
+      font-size: 30rpx;
+      color: #000;
+    }
+    .active{
+      color: var(--themeColor);
+      /* currentColor是CSS中的关键字,表示最近使用的颜色 */
+      border-left: 5rpx solid currentColor;
+    }
+  }
+
+  .right_content{
+    flex: 4;
+    .goods_group{
+      .goods_title{
+        height: 80rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .delimiter{
+          color: lightpink;
+          padding: 0 20rpx;
+        }
+        .goods_group_title{
+          font-size: 30rpx;
+          color: #000;
+        }
+      }
+      .goods_list{
+        display: flex;
+        flex-wrap: wrap;    /* 一行放不下时就进行换行 */
+        navigator{
+          width: 33.33%;
+          text-align: center;
+          image{
+            width: 70%;
+          }
+        }
+      }
+    }
+  }
+
+}
