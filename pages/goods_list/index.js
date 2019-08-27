@@ -39,9 +39,20 @@
       0 封装过一个发送请求的代码 request
       1 发送异步请求之前显示
       2 异步请求成功 就关闭
+
+
+  5 将异步代码改成 更加优雅的es7 async语法、
+    0 旧版本的微信和旧的手机 直接不要在原生的小程序中使用ES7的语法！！！
+    1 在方法的定义钱 加一个async
+    2 在async所描述的方法内 找到发送的异步代码 在它的前面加一个await即可
+    3 容易报一个错误 运行环境不支持 es7 的代码
+    4 会用一个方法 来解决代码中报错的问题
+      1 这个方法 不能解决所有的旧手机和旧微信的语法兼容问题
+
 */
 
 import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
   /**
    * 页面的初始数据
@@ -79,8 +90,8 @@ Page({
   },
 
   // 获取商品列表数据
-  getGoodsList() {
-    request({
+  async getGoodsList() {
+    /* request({
       url: "/goods/search",
       data: this.QueryParams
     }).then(res=>{
@@ -94,7 +105,20 @@ Page({
       //  1 界面第一次打开的时候 没有调用下拉刷新窗口就直接关闭
       //  2 下拉刷新没有打开 也可以关闭
       wx.stopPullDownRefresh();
+    }) */
+
+    // await等待请求回来了才执行下一步代码
+    const res = await request({url: "/goods/search",data: this.QueryParams})
+    // 计算总页数
+    this.TotalPages = Math.ceil(res.total / this.QueryParams.pagesize);
+    this.setData({
+      // 为了做加载下一页 改成拼接  先解构旧的数组 再解构新的数组
+      goodsList: [...this.data.goodsList, ...res.goods]
     })
+    // 关闭下拉刷新窗口
+    //  1 界面第一次打开的时候 没有调用下拉刷新窗口就直接关闭
+    //  2 下拉刷新没有打开 也可以关闭
+    wx.stopPullDownRefresh();
   },
 
   // 滚动条触底，上拉加载下一页 事件
