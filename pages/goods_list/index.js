@@ -19,6 +19,18 @@
         对旧的数组进行拼接
     4 没有下一页
       弹出提示
+  3 下拉刷新
+    1 触发下拉刷新的事件
+      1 需要在页面json文件中开启 允许下来配置
+      2 页面js中 添加一个 下拉刷新事件 
+      3 可能需要在app.json文件中 修改下拉刷新小圆点的颜色。。。
+    2 实现刷新逻辑
+      1 重置 pagenum
+      2 重置data中的数组 goodsList = []
+      3 重新发送请求!!!
+        1 pagenum = 1
+        2 会对goodsList = [] 重新赋值!!!
+      4 当数据请求回来了 需要手动关闭下拉刷新窗口 wx.stopPullDownRefresh()
 */
 
 import { request } from "../../request/index.js";
@@ -71,6 +83,10 @@ Page({
         // 为了做加载下一页 改成拼接  先解构旧的数组 再解构新的数组
         goodsList: [...this.data.goodsList, ...res.goods]
       })
+      // 关闭下拉刷新窗口
+      //  1 界面第一次打开的时候 没有调用下拉刷新窗口就直接关闭
+      //  2 下拉刷新没有打开 也可以关闭
+      wx.stopPullDownRefresh();
     })
   },
 
@@ -90,6 +106,18 @@ Page({
     }
   },
 
+  // 页面下拉刷新事件
+  onPullDownRefresh(){
+    // 1 重置页码
+    // 2 重置data中的数组
+    // 3 重新发送请求
+
+    this.QueryParams.pagenum = 1;
+    this.setData({
+      goodsList: []
+    });
+    this.getGoodsList();
+  },
   // 改变tabs标题的选中效果
   handleTitleChange(e) {
     // 先获取子组件传递过来的数据
