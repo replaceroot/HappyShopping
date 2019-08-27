@@ -31,6 +31,14 @@
         1 pagenum = 1
         2 会对goodsList = [] 重新赋值!!!
       4 当数据请求回来了 需要手动关闭下拉刷新窗口 wx.stopPullDownRefresh()
+
+  4 添加一个全局的正在加载中效果
+    1 效果是哪个代码决定
+    2 思考在哪里进行调用会比较方便
+      -1 axios 请求拦截器
+      0 封装过一个发送请求的代码 request
+      1 发送异步请求之前显示
+      2 异步请求成功 就关闭
 */
 
 import { request } from "../../request/index.js";
@@ -78,7 +86,6 @@ Page({
     }).then(res=>{
       // 计算总页数
       this.TotalPages = Math.ceil(res.total / this.QueryParams.pagesize);
-      console.log(this.TotalPages);
       this.setData({
         // 为了做加载下一页 改成拼接  先解构旧的数组 再解构新的数组
         goodsList: [...this.data.goodsList, ...res.goods]
@@ -100,7 +107,6 @@ Page({
       });
         
     }else{
-      console.log("还有下一页数据")
       this.QueryParams.pagenum++;
       this.getGoodsList();
     }
