@@ -11,7 +11,7 @@ export const request = params => {
         reslove(result.data.message);
       },
       fail: error => {
-        reject(error);
+        reject(error); 
       }
     });
   });
