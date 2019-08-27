@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    h5的本地存储
+    1 会话存储 sessionStorage 浏览器关闭了数据就不存在了
+    2 永久存储 localStorage 永远存在，除非用户手动删除
+      localStorage.setItem("key","value")
+      localStorage.getItem("key")
+      localStorage.removeItem("key")
+      localStorage.clear();
+   -->
+
+   <script>
+    // 设置值
+    // localStorage.setItem("time",'2019-8-27 14:58:28');
+    
+    // 获取值 null
+    // console.log(localStorage.getItem("test"))
+
+    // console.log(localStorage.getItem("time"))
+
+    // 设置不同的类型的值的时候，都会被转成字符串类型
+    // 1 设置简单的值还可以接受 0 '0' true 'true'
+    // 2设置对象类型 直接存入的话 数据会丢失！！！ {name: "Alex"}=> ???
+    // 2.1 存入一些复杂类型的时候都需要先抓成json字符串格式，再存入
+    //  JSON.stringify(obj)
+    // 2.2 重新获取的时候就需要重新把值 解析成对象类型
+    //  JSON.parse(jsonObj) => 对象类型
+
+    // localStorage.setItem("num1", 1);
+    // localStorage.setItem("num2", '2');
+    // localStorage.setItem("isOk1", true);
+    // localStorage.setItem("isOk2", 'true');
+    // console.log(typeof localStorage.getItem("num1"));
+    // console.log(typeof localStorage.getItem("num2"));
+    // console.log(typeof localStorage.getItem("isOk1"));
+    // console.log(typeof localStorage.getItem("isOk2"));
+
+    var obj = {name: "Alex"};
+    localStorage.setItem("person", JSON.stringify(obj));
+    console.log(localStorage.getItem("person"));    // 字符串类型
+    console.log(JSON.parse(localStorage.getItem("person")));    // 对象类型
+   </script>
+</body>
+</html>
