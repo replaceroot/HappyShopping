@@ -17,6 +17,7 @@ import {request} from '../../request/index.js';
   2 web中的本地存储和小程序中的本地存储的使用区别
   3 实现缓存的需求
     1 发送请求之前 先判断有没有缓存数据
+      1 假设存入存储中的对象 key="cates" {time:Date.now(), data:接口的返回值 []}
     2 没有缓存数据 直接发送新请求获取数据 同时把新的数据存入到本地存储中
     3 有缓存数据 并且数据没有过期!!!我们直接定义一个过期时间，例如5分钟
       此时再使用缓存数据
@@ -40,12 +41,28 @@ Page({
   // 因为小程序中会对data的数据进行传输，传输到视图层也就是wxml中 这样会导致页面会卡
   Cates: [],
   onLoad(){
-    // this.getCategoryList();
-
-    // 小程序的本地存储技术(同步的方式)
-    wx.setStorageSync("data", {name:"Alex"});
-    let data = wx.getStorageSync("data");
-    console.log(data);
+    //1 发送请求之前判断本地存储中有没有数据
+    // 默认值是空字符串
+    let cates = wx.getStorageSync("cates");
+    if(!cates){
+      // 没有数据,发送请求获取数据
+      this.getCategoryList();
+    } else{
+      // 有数据 判断时间是否过期  Date.now()单位是毫秒
+      if(Date.now()-cates.time>1000*10){
+        // 数据过期, 重新发送请求
+        this.getCategoryList();
+      }else{
+        // 数据没有过期，可以直接使用
+        this.Cates = cates.data; 
+        let leftMenuList = this.Cates.map((v,i) => ({cat_name: v.cat_name, cat_id: v.cat_id}));
+        let rightGoodsList = this.Cates[0].children;
+        this.setData({
+          leftMenuList,
+          rightGoodsList
+        })
+      }
+    }
   },
 
   // 获取分类数据
@@ -56,6 +73,9 @@ Page({
     .then(result=>{
       // 给全局参数赋值
       this.Cates = result;
+      // 把接口的数据存入到本地存储中
+      wx.setStorageSync("cates", {time:Date.now(), data:this.Cates});
+        
       // map返回数组
       let leftMenuList = this.Cates.map((v,i) => ({cat_name: v.cat_name, cat_id: v.cat_id}));
       let rightGoodsList = this.Cates[0].children;
