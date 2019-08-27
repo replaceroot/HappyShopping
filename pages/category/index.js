@@ -40,7 +40,12 @@ Page({
   // 因为小程序中会对data的数据进行传输，传输到视图层也就是wxml中 这样会导致页面会卡
   Cates: [],
   onLoad(){
-    this.getCategoryList();
+    // this.getCategoryList();
+
+    // 小程序的本地存储技术(同步的方式)
+    wx.setStorageSync("data", {name:"Alex"});
+    let data = wx.getStorageSync("data");
+    console.log(data);
   },
 
   // 获取分类数据
