@@ -12,6 +12,7 @@ Page({
   },
 
   onLoad(options){
+    
     this.getGoodsDetail(options.goods_id);
   },
   // 获取商品的详情数据
@@ -22,7 +23,7 @@ Page({
       goodsObj: {
         goods_name: res.goods_name,
         goods_price: res.goods_price,
-        goods_introduce: res.goods_introduce,
+        goods_introduce: res.goods_introduce.replace(/\.webp/g, '.jpg' ),
         pics: res.pics
       }
     })
