@@ -36,10 +36,11 @@ Page({
   },
 
   // 点击图片进行大屏预览
-  handlePreviewImage(){
+  handlePreviewImage(e){
+    const {index} = e.currentTarget.dataset;
     // 返回新数组
     const urls = this.data.goodsObj.pics.map(v=>v.pics_big);
-    const current = urls[0];
+    const current = urls[index];
     wx.previewImage({
       current,
       urls
