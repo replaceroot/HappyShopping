@@ -1,0 +1,58 @@
+.detail_swiper{
+  swiper{
+    /* 
+      原图的宽 / 原图的高 = 变化后的图片的宽度 / 高度
+      height = 750rpx * 原图的高 / 原图的高
+      
+    */
+    height: 450rpx;
+    text-align: center;
+    image{
+      width: 50%;
+    }
+  }
+}
+
+.goods_price{
+  color: var(--themeColor);
+  font-size: 600;
+  font-size: 32rpx;
+  padding: 20rpx 10rpx;
+}
+.goods_info{
+  padding: 10rpx;
+  display: flex;
+  border-bottom: 10rpx solid #ccc;
+  border-top: 10rpx solid #ccc;
+  .goods_name{
+    flex: 5;
+    font-size: 30rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .goods_collect{
+    border-left: 1rpx solid #000;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .iconfont{
+      font-size: 40rpx;
+    }
+  }
+}
+
+.goods_detail{
+  .goods_detail_title{
+    padding: 20rpx 10rpx;
+    color: var(--themeColor);
+    font-weight: 600;
+    border-bottom: 10rpx solid #ccc;
+  }
+  .goods_detail_content{
+
+  }
+}
