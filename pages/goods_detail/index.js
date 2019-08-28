@@ -1,3 +1,9 @@
+/* 
+  1 点击轮播图 调出图片预览功能
+    1 绑定点击事件
+
+*/
+
 // pages/goods_detail/index.js
 import { request } from "../../request/index.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
@@ -27,5 +33,17 @@ Page({
         pics: res.pics
       }
     })
+  },
+
+  // 点击图片进行大屏预览
+  handlePreviewImage(){
+    // 返回新数组
+    const urls = this.data.goodsObj.pics.map(v=>v.pics_big);
+    const current = urls[0];
+    wx.previewImage({
+      current,
+      urls
+    });
+      
   }
 })
