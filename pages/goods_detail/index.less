@@ -1,3 +1,7 @@
+page{
+  bottom: 90rpx;
+}
+
 .detail_swiper{
   swiper{
     /* 
@@ -52,7 +56,35 @@
     font-weight: 600;
     border-bottom: 10rpx solid #ccc;
   }
-  .goods_detail_content{
+  .goods_detail_content{}
+}
 
+.btm_tool{
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 90rpx;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  border-top: 1rpx solid #dedede;
+  .tool_item{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn_car{
+    flex: 2;
+    background-color: orange;
+    color: #fff;
+    font-size: 34rpx;
+  }
+  .btn_buy{
+    flex: 2;
+    background-color: orangered;
+    color: #fff;
+    font-size: 34rpx;
   }
 }

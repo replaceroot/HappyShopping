@@ -34,11 +34,26 @@
   <view class="goods_detail_content">
     <!-- 富文本标签 -->
     <rich-text nodes="{{goodsObj.goods_introduce}}">
-      
     </rich-text>
-      
-
   </view>
 </view>
-
 <!-- 图文详情 结束 -->
+
+<!-- 底部工具栏 开始 -->
+<view class="btm_tool">
+  <view class="tool_item">
+    <text class="iconfont icon-kefu"></text>
+    <view class="item_name">客服</view>
+  </view>
+  <view class="tool_item">
+    <text class="iconfont icon-yixianshi-"></text>
+    <view class="item_name">分享</view>
+  </view>
+    <view class="tool_item">
+    <text class="iconfont icon-gouwuche"></text>
+    <view class="item_name">购物车</view>
+  </view>
+  <view class="tool_item btn_car">加入购物车</view>
+  <view class="tool_item btn_buy">立即购买</view>
+</view>
+<!-- 底部工具栏 结束 -->
