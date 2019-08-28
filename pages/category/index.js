@@ -1,5 +1,6 @@
 //Page Object
 import {request} from '../../request/index.js';
+import {getStorageCates, setStorageCates} from '../../utils/storage.js'
 
 /* 
 1 页面的初次动态渲染
@@ -43,7 +44,7 @@ Page({
   onLoad(){
     //1 发送请求之前判断本地存储中有没有数据
     // 默认值是空字符串
-    let cates = wx.getStorageSync("cates");
+    let cates = getStorageCates();
     if(!cates){
       // 没有数据,发送请求获取数据
       this.getCategoryList();
@@ -74,7 +75,7 @@ Page({
       // 给全局参数赋值
       this.Cates = result;
       // 把接口的数据存入到本地存储中
-      wx.setStorageSync("cates", {time:Date.now(), data:this.Cates});
+      setStorageCates({time:Date.now(), data:this.Cates});
         
       // map返回数组
       let leftMenuList = this.Cates.map((v,i) => ({cat_name: v.cat_name, cat_id: v.cat_id}));
