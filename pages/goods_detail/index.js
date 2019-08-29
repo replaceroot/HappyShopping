@@ -22,6 +22,7 @@
 
 // pages/goods_detail/index.js
 import { request } from "../../request/index.js";
+import { getStorageCart, setStorageCart } from "../../utils/storage.js";
 import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
@@ -70,7 +71,7 @@ Page({
   handleCartAdd(){
     // 要填入到本地存储中的购物车对象
     // 该变量要么是一个完整的对象 要么是一个空对象
-    let cart = wx.getStorageSync("cart") || {};
+    let cart = getStorageCart() || {};
     // 判断要添加的商品 是否已经存在于购物车对象中
     if(cart[this.GoodsInfo.goods_id]){
       // 已经有旧数据了
@@ -80,7 +81,7 @@ Page({
       cart[this.GoodsInfo.goods_id] = this.GoodsInfo;
       cart[this.GoodsInfo.goods_id].num = 1;
     }
-    wx.setStorageSync("cart", cart);
+    setStorageCart(cart);
     wx.showToast({
       title: '添加成功',
       icon: 'success',
