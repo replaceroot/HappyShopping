@@ -76,7 +76,7 @@ page {
   top: 0;
   opacity: 0;
 }
-.btm_tool .btn_car {
+.btm_tool .btn_cart {
   flex: 2;
   background-color: orange;
   color: #fff;
