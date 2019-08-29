@@ -31,7 +31,7 @@ Page({
     // 左侧的菜单数组
     leftMenuList: [],
     // 右侧商品内容数组
-    rightGoodsList: [],
+    rightgoodsList: [],
     // 选中的菜单
     currentIndex: 0,
     // 右侧滚动条的距离
