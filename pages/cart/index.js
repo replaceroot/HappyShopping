@@ -14,17 +14,24 @@
     1 直接调用获取收货地址的api
     2 假设授权信息是false(用户明确不授权)
       1 诱导用户打开授权页面 等用户重新给予权限之后再调用获取收货地址
-  2 页面一打开的时候 判断
+2 页面一打开的时候 判断
     0 onLoad onShow (要使用的)
     1 本地存储中有没有收货地址 如果有 把地址赋给 data中的数据
     2 此时wxml页面就可以根据data中的数据进行页面标签的显示和隐藏
+
+3 页面的数据动态渲染
+  0 在购物车页面新增购物车商品的时候
+    1 新增了数量和选中状态
+  1 要渲染收货地址
+  2 渲染购物车数据
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
 import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx";
 Page({
   data: {
-    address: {}
+    address: {},
+    cart: {}
   },
   // 获取收货地址
   async handleChooseAddress() {
@@ -51,7 +58,9 @@ Page({
   onShow(){
     // 1 获取本地存储中的 收货地址数据 默认值 空字符串
     const address = wx.getStorageSync("address") || {};
+    // 获取购物车数据
+    const cart = wx.getStorageSync('cart') || {};
     // 2 把address存入data中
-    this.setData({address})
+    this.setData({address, cart})
   }
 });

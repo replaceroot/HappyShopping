@@ -4,108 +4,53 @@
        3 代码中要这样来判断
           0 空对象的bool类型是true 所以要判断 对象中的某个属性是否存在即可
           1 当address对象里面没有属性的时候 没有收货地址 要显示按钮
-          2 否则就相反
-  -->
+          2 否则就相反 -->
   <view wx:if="{{!address.userName}}" class="revice_btn_row">
     <button type="primary" plain bindtap="handleChooseAddress">获取收货地址</button>
   </view>
   <view wx:else class="revice_address">
     <view class="address_user">
       <view>收货人:{{address.userName}}</view>
-      <view>{{address.all}}</view>      
+      <view>{{address.all}}</view>
     </view>
-    <view class="address_phone">
-      {{address.telNumber}}
-    </view>
+    <view class="address_phone">{{address.telNumber}}</view>
   </view>
 </view>
-
 <view class="cart_main">
   <view class="cart_main_title">购物车</view>
   <view class="cart_main_list">
-    <view class="cart_item">
+    <view class="cart_item"
+    wx:for="{{cart}}"
+    wx:for-index="key"
+    wx:for-item="value"
+    wx:key="value"
+    >
       <!-- 复选框 -->
       <view class="cart_chk_wrap">
         <checkbox-group bindchange="">
-          <checkbox></checkbox>
+          <checkbox checked="{{value.checked}}"></checkbox>
         </checkbox-group>
-          
       </view>
       <!-- 图片 -->
       <view class="cart_image_wrap">
-        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
+        <image mode="widthFix" src="{{value.goods_small_logo}}"></image>
       </view>
       <!-- 商品信息 -->
       <viiew class="cart_info_wrap">
         <!-- 名称 -->
-        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
+        <view class="goods_name">{{value.goods_name}}</view>
         <view class="goods_price_wrap">
-          <view class="goods_price">￥89</view>
-        <view class="cart_num_wrap">
-          <text class="cart_num_edit">-</text>
-          <text class="cart_num">10</text>
-          <text class="cart_num_edit">+</text>
-        </view>
-        </view>
-      </viiew>
-    </view>
-
-        <view class="cart_item">
-      <!-- 复选框 -->
-      <view class="cart_chk_wrap">
-        <checkbox-group bindchange="">
-          <checkbox></checkbox>
-        </checkbox-group>
-          
-      </view>
-      <!-- 图片 -->
-      <view class="cart_image_wrap">
-        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
-      </view>
-      <!-- 商品信息 -->
-      <viiew class="cart_info_wrap">
-        <!-- 名称 -->
-        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
-        <view class="goods_price_wrap">
-          <view class="goods_price">￥89</view>
-        <view class="cart_num_wrap">
-          <text class="cart_num_edit">-</text>
-          <text class="cart_num">1</text>
-          <text class="cart_num_edit">+</text>
-        </view>
-        </view>
-      </viiew>
-    </view>
-
-        <view class="cart_item">
-      <!-- 复选框 -->
-      <view class="cart_chk_wrap">
-        <checkbox-group bindchange="">
-          <checkbox></checkbox>
-        </checkbox-group>
-          
-      </view>
-      <!-- 图片 -->
-      <view class="cart_image_wrap">
-        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
-      </view>
-      <!-- 商品信息 -->
-      <viiew class="cart_info_wrap">
-        <!-- 名称 -->
-        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
-        <view class="goods_price_wrap">
-          <view class="goods_price">￥89</view>
-        <view class="cart_num_wrap">
-          <text class="cart_num_edit">-</text>
-          <text class="cart_num">10</text>
-          <text class="cart_num_edit">+</text>
-        </view>
+          <view class="goods_price">￥{{value.goods_price}}</view>
+          <view class="cart_num_wrap">
+            <text class="cart_num_edit">-</text>
+            <text class="cart_num">{{value.num}}</text>
+            <text class="cart_num_edit">+</text>
+          </view>
         </view>
       </viiew>
     </view>
   </view>
 </view>
-
 <!-- 底部的工具栏 -->
 <view class="foot_tool">
   <!-- 全选 -->
@@ -117,12 +62,11 @@
   <!-- 总价格 -->
   <view class="foot_price">
     <view class="total_price_wrap">
-      合计: <text class="total_price">￥777</text>
+      合计:
+      <text class="total_price">￥777</text>
     </view>
     <view class="freight">包含运费</view>
   </view>
   <!-- 结算 -->
-  <view class="btn_pay">
-    结算(2)
-  </view>
+  <view class="btn_pay">结算(2)</view>
 </view>

@@ -80,6 +80,8 @@ Page({
       // 第一次新增数据
       cart[this.GoodsInfo.goods_id] = this.GoodsInfo;
       cart[this.GoodsInfo.goods_id].num = 1;
+      cart[this.GoodsInfo.goods_id].checked = true;
+      
     }
     setStorageCart(cart);
     wx.showToast({
