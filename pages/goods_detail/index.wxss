@@ -1,5 +1,5 @@
 page {
-  bottom: 90rpx;
+  padding-bottom: 90rpx;
 }
 .detail_swiper swiper {
   /* 

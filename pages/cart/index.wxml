@@ -1,5 +1,21 @@
 <view class="revice_wrap">
-  <view class="revice_btn_row">
+  <!-- 1 当收货地址不存在 按钮要显示 
+       2 收货地址存在 直接显示详细信息
+       3 代码中要这样来判断
+          0 空对象的bool类型是true 所以要判断 对象中的某个属性是否存在即可
+          1 当address对象里面没有属性的时候 没有收货地址 要显示按钮
+          2 否则就相反
+  -->
+  <view wx:if="{{!address.userName}}" class="revice_btn_row">
     <button type="primary" plain bindtap="handleChooseAddress">获取收货地址</button>
+  </view>
+  <view wx:else class="revice_address">
+    <view class="address_user">
+      <view>收货人:{{address.userName}}</view>
+      <view>{{address.all}}</view>      
+    </view>
+    <view class="address-phone">
+      {{address.telNumber}}
+    </view>
   </view>
 </view>

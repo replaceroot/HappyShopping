@@ -14,11 +14,18 @@
     1 直接调用获取收货地址的api
     2 假设授权信息是false(用户明确不授权)
       1 诱导用户打开授权页面 等用户重新给予权限之后再调用获取收货地址
+  2 页面一打开的时候 判断
+    0 onLoad onShow (要使用的)
+    1 本地存储中有没有收货地址 如果有 把地址赋给 data中的数据
+    2 此时wxml页面就可以根据data中的数据进行页面标签的显示和隐藏
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
 import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx";
 Page({
+  data: {
+    address: {}
+  },
   // 获取收货地址
   async handleChooseAddress() {
     // const scopeAddress = result.authSetting["scope.address"];
@@ -28,12 +35,23 @@ Page({
     // 2 对授权信息做判断
     if (scopeAddress === true || scopeAddress === undefined) {
       // 2.1 直接调用获取收货地址的api
-      const res2 = await chooseAddress();
+      // const res2 = await chooseAddress();
     } else {
       // 2.2 诱导用户打开授权页面
       await openSetting();
-      // 2.3 获取收货地址
-      const res2 = await chooseAddress();
     }
+    const address = await chooseAddress();
+    // 拼接完整的地址
+    address.all = address.provinceName + address.cityName + address.countyName + address.detailInfo;
+    // 3把收货地址存入到本地存储中
+    wx.setStorageSync('address', address);
+  },
+
+  // 页面切换显示的时候 触发 onShow
+  onShow(){
+    // 1 获取本地存储中的 收货地址数据 默认值 空字符串
+    const address = wx.getStorageSync("address") || {};
+    // 2 把address存入data中
+    this.setData({address})
   }
 });

@@ -15,9 +15,8 @@ export const request = params => {
     title: "加载中..."
   });
   ajaxTimes++;
-  console.log("发送出去的异步请求的个数" + ajaxTimes);
   // 统一的接口前缀
-  const baseUrl = "https://api.zbztb.cn/api/public/v1";
+  const baseUrl = "https://crazy18.club/api/public/v1";
   return new Promise((reslove, reject) => {
     wx.request({
       // 结构params参数
@@ -34,7 +33,6 @@ export const request = params => {
         ajaxTimes--;
         if (ajaxTimes === 0) {
           // 同时发送出去的请求都回来了
-          console.log("请求都回来了" + ajaxTimes);
           wx.hideLoading();
         }
       }

@@ -4,3 +4,16 @@
 .revice_wrap .revice_btn_row button {
   width: 60%;
 }
+.revice_address {
+  padding: 10rpx;
+  display: flex;
+}
+.revice_address .address_user {
+  font-size: 30rpx;
+  color: #000;
+}
+.revice_address .address_phone {
+  flex: 1;
+  text-align: right;
+  color: #000;
+}
