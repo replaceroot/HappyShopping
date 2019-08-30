@@ -24,6 +24,16 @@
     1 新增了数量和选中状态
   1 要渲染收货地址
   2 渲染购物车数据
+  3 渲染全选 总价格 和 购物总数量
+    1 当用户手动的修改了 购买的数量 和选中的状态 
+      1都会重新修改data中的cart对象，把cart对象重新赋值到本地存储中
+    2 经过分析 每当用户手动修改了购买的数量 和选中的状态 
+      1 都需要修改data中的cart和缓存中的cart
+      2 都需要重新计算总价格和购物总数量
+    3 封装一个方法
+      1 修改data和缓存数据
+      2 计算总价格
+      
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
@@ -31,7 +41,10 @@ import { getSetting, openSetting, chooseAddress } from "../../utils/asyncWx";
 Page({
   data: {
     address: {},
-    cart: {}
+    cart: {},
+    isAllChecked:false,
+    totalNum: 0,
+    totalPrice: 0
   },
   // 获取收货地址
   async handleChooseAddress() {
@@ -61,6 +74,30 @@ Page({
     // 获取购物车数据
     const cart = wx.getStorageSync('cart') || {};
     // 2 把address存入data中
-    this.setData({address, cart})
+    this.setData({address})
+    this.setCart(cart);
+  },
+
+  // 设置购物车数据和设置总价格
+  setCart(cart){
+    // 0 把购物车对象转成数组
+    let cartArr = Object.values(cart);
+
+    // 1 计算是否都选中了
+    // every 会接收一个回调函数 当每个循环项都返回true的时候 整个cartArry的返回值才会为true
+    let isAllChecked = cartArr.every(v=>v.checked);
+    console.log(isAllChecked);
+    // 2 计算总价格 只计算勾选的商品价格
+    let totalPrice = 0;
+    // 3 计算总数量 
+    let totalNum = 0;
+    cartArr.forEach(v=>{
+      if(v.checked){
+        totalPrice += v.num * v.goods_price;
+        totalNum += v.num;
+      }
+    })
+    this.setData({cart, isAllChecked, totalPrice, totalNum})
+    wx.setStorageSync('cart', cart);
   }
 });
