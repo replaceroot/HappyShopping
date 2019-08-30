@@ -19,3 +19,89 @@
     </view>
   </view>
 </view>
+
+<view class="cart_main">
+  <view class="cart_main_title">购物车</view>
+  <view class="cart_main_list">
+    <view class="cart_item">
+      <!-- 复选框 -->
+      <view class="cart_chk_wrap">
+        <checkbox-group bindchange="">
+          <checkbox></checkbox>
+        </checkbox-group>
+          
+      </view>
+      <!-- 图片 -->
+      <view class="cart_image_wrap">
+        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
+      </view>
+      <!-- 商品信息 -->
+      <viiew class="cart_info_wrap">
+        <!-- 名称 -->
+        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
+        <view class="goods_price_wrap">
+          <view class="goods_price">￥89</view>
+        <view class="cart_num_wrap">
+          <text class="cart_num_edit">-</text>
+          <text class="cart_num">10</text>
+          <text class="cart_num_edit">+</text>
+        </view>
+        </view>
+      </viiew>
+    </view>
+
+        <view class="cart_item">
+      <!-- 复选框 -->
+      <view class="cart_chk_wrap">
+        <checkbox-group bindchange="">
+          <checkbox></checkbox>
+        </checkbox-group>
+          
+      </view>
+      <!-- 图片 -->
+      <view class="cart_image_wrap">
+        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
+      </view>
+      <!-- 商品信息 -->
+      <viiew class="cart_info_wrap">
+        <!-- 名称 -->
+        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
+        <view class="goods_price_wrap">
+          <view class="goods_price">￥89</view>
+        <view class="cart_num_wrap">
+          <text class="cart_num_edit">-</text>
+          <text class="cart_num">10</text>
+          <text class="cart_num_edit">+</text>
+        </view>
+        </view>
+      </viiew>
+    </view>
+
+        <view class="cart_item">
+      <!-- 复选框 -->
+      <view class="cart_chk_wrap">
+        <checkbox-group bindchange="">
+          <checkbox></checkbox>
+        </checkbox-group>
+          
+      </view>
+      <!-- 图片 -->
+      <view class="cart_image_wrap">
+        <image mode="widthFix" src="http://image3.suning.cn/uimg/b2c/newcatentries/0070149661-000000000821439938_1_200x200.jpg"></image>
+      </view>
+      <!-- 商品信息 -->
+      <viiew class="cart_info_wrap">
+        <!-- 名称 -->
+        <view class="goods_name">黑貂机械手感背光游戏键盘 悬浮式按键发光铝合金面板网吧19键无冲有线键盘 防水防尘（PS/2接口）台式电脑游戏电竞键盘</view>
+        <view class="goods_price_wrap">
+          <view class="goods_price">￥89</view>
+        <view class="cart_num_wrap">
+          <text class="cart_num_edit">-</text>
+          <text class="cart_num">10</text>
+          <text class="cart_num_edit">+</text>
+        </view>
+        </view>
+      </viiew>
+    </view>
+  </view>
+</view>
