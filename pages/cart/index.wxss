@@ -1,3 +1,6 @@
+page {
+  padding-bottom: 90rpx;
+}
 .revice_wrap .revice_btn_row {
   padding: 20rpx 0;
 }
@@ -85,4 +88,41 @@
   justify-content: center;
   align-items: center;
   margin: 0 5rpx;
+}
+.foot_tool {
+  border-top: 1rpx solid #ccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 90rpx;
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+}
+.foot_tool .foot_all_check {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  align-items: center;
+}
+.foot_tool .foot_price {
+  flex: 4;
+  text-align: right;
+  padding-right: 10rpx;
+}
+.foot_tool .foot_price .total_price_wrap .total_price {
+  color: var(--themeColor);
+}
+.foot_tool .foot_price .freight {
+  color: #666;
+}
+.foot_tool .btn_pay {
+  flex: 2;
+  color: #fff;
+  background-color: var(--themeColor);
+  font-size: 38rpx;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

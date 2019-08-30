@@ -14,7 +14,7 @@
       <view>收货人:{{address.userName}}</view>
       <view>{{address.all}}</view>      
     </view>
-    <view class="address-phone">
+    <view class="address_phone">
       {{address.telNumber}}
     </view>
   </view>
@@ -70,7 +70,7 @@
           <view class="goods_price">￥89</view>
         <view class="cart_num_wrap">
           <text class="cart_num_edit">-</text>
-          <text class="cart_num">10</text>
+          <text class="cart_num">1</text>
           <text class="cart_num_edit">+</text>
         </view>
         </view>
@@ -103,5 +103,26 @@
         </view>
       </viiew>
     </view>
+  </view>
+</view>
+
+<!-- 底部的工具栏 -->
+<view class="foot_tool">
+  <!-- 全选 -->
+  <view class="foot_all_check">
+    <checkbox-group bindchange="">
+      <checkbox>全选</checkbox>
+    </checkbox-group>
+  </view>
+  <!-- 总价格 -->
+  <view class="foot_price">
+    <view class="total_price_wrap">
+      合计: <text class="total_price">￥777</text>
+    </view>
+    <view class="freight">包含运费</view>
+  </view>
+  <!-- 结算 -->
+  <view class="btn_pay">
+    结算(2)
   </view>
 </view>
