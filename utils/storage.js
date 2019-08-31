@@ -27,3 +27,18 @@ export const setStorageCart = (obj)=>{
 export const getStorageCart = ()=>{
   return wx.getStorageSync("cart");
 }
+
+/**
+ *  设置收货地址信息
+ * @param {Object} obj 
+ */
+export const setStorageAddress = (obj)=>{
+  wx.setStorageSync("address", obj);
+}
+
+/**
+ * 获取收货地址信息
+ */
+export const getStorageAddress = ()=>{
+  return wx.getStorageSync("address");
+}

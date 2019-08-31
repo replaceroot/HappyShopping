@@ -67,12 +67,8 @@
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
-import {
-  getSetting,
-  openSetting,
-  chooseAddress,
-  showModal
-} from "../../utils/asyncWx";
+import {setStorageCart, getStorageCart, setStorageAddress, getStorageAddress} from '../../utils/storage'
+import {getSetting,openSetting,chooseAddress,showModal} from "../../utils/asyncWx";
 Page({
   data: {
     address: {},
@@ -105,7 +101,7 @@ Page({
       address.countyName +
       address.detailInfo;
     // 3把收货地址存入到本地存储中
-    wx.setStorageSync("address", address);
+    setStorageAddress(address);
     } catch (error) {
       console.log(error);
     }
@@ -115,9 +111,9 @@ Page({
   // 页面切换显示的时候 触发 onShow
   onShow() {
     // 1 获取本地存储中的 收货地址数据 默认值 空字符串
-    const address = wx.getStorageSync("address") || {};
+    const address = getStorageAddress() || {};
     // 获取购物车数据
-    const cart = wx.getStorageSync("cart") || {};
+    const cart = getStorageCart() || {};
     // 2 把address存入data中
     this.setData({ address });
     this.setCart(cart);
@@ -144,7 +140,7 @@ Page({
     });
     let hasCart = cartArr.length?true:false;
     this.setData({ cart, isAllChecked, totalPrice, totalNum, hasCart });
-    wx.setStorageSync("cart", cart);
+    setStorageCart(cart);
   },
 
   // 监听checkbox状态改变
