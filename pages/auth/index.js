@@ -20,7 +20,7 @@ Page({
       try {
         // 获取用户的signature iv rawData encryptedData
       const {signature, iv, rawData, encryptedData} = e.detail;
-      // console.log(e.detail);
+      console.log(e.detail);
       // 执行小程序的登录
       const {code} = await wxLogin();
       console.log(code);

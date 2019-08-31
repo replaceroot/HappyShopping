@@ -12,6 +12,7 @@
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
+import {request} from '../../request/index.js'
 
 Page({
   data: {
@@ -49,7 +50,7 @@ Page({
   },
 
   // 点击支付按钮
-  handleOrderPay(){
+  async handleOrderPay(){
     // 获取token
     const token = wx.getStorageSync("token")
     // 判断是否存在
@@ -58,9 +59,31 @@ Page({
       wx.navigateTo({
         url: '/pages/auth/index',
       });
-    }else{
-      // 有token 直接写逻辑
-      console.log("有 token");
+      return;
     }
+
+    // 正常的逻辑
+    let cartArr = Object.values(this.data.cart);
+    // 设置请求头
+    const header = {Authorzation: token};
+    // 构造订单要求的数据
+    // 订单总价格
+    let order_price = this.data.totalPrice;
+    // 订单地址
+    let consignee_addr = this.data.address.all;
+    // 订单的商品信息
+    let goods = [];
+    // 要的购物车中 有checked属性的商品
+    cartArr.forEach(v=>{
+      if (v.checked) {
+        totalPrice += v.num * v.goods_price;
+        totalNum += v.num;
+      }
+    })
+    // 把请求体的参数封装起来
+    const orderParams = {order_price, consignee_addr, goods}
+    // 发送请求创建订单
+    const res = await request({url:'/my/orders/create', data:orderParams, method:'post', header:header})
+    console.log(res);
   }
 });
