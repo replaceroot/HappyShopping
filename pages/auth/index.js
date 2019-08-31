@@ -22,9 +22,8 @@ Page({
       // 执行小程序的登录
       const {code} = await wxLogin();
       let postParams = {signature, iv, rawData, encryptedData, code};
-      console.log(code, postParams);
       // 发送请求到第三方的服务器 来获取真正的token
-      const res = await request({url:'/users/wxlogin', data:postParams, methods: "post"});
+      const res = await request({url:'/users/wxlogin', data:postParams, method: "post"});
       console.log(res)
       // console.log(token);
       // 存入token

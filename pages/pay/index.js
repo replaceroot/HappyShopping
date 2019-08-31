@@ -55,7 +55,7 @@ Page({
     // 判断是否存在
     if(!token){
       // 跳转到授权页面
-      wx.wx.navigateTo({
+      wx.navigateTo({
         url: '/pages/auth/index',
       });
     }else{

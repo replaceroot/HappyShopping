@@ -84,7 +84,8 @@ Page({
   },
   // 获取收货地址
   async handleChooseAddress() {
-    // const scopeAddress = result.authSetting["scope.address"];
+    try {
+      // const scopeAddress = result.authSetting["scope.address"];
     // 1 获取到授权信息
     const res1 = await getSetting();
     const scopeAddress = res1.authSetting["scope.address"];
@@ -105,6 +106,10 @@ Page({
       address.detailInfo;
     // 3把收货地址存入到本地存储中
     wx.setStorageSync("address", address);
+    } catch (error) {
+      console.log(error);
+    }
+    
   },
 
   // 页面切换显示的时候 触发 onShow
