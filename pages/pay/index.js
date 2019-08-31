@@ -1,7 +1,14 @@
 
 /* 
   1 动态渲染的商品应该是 checked=true的这些商品
-  
+  2 获取订单编号
+    0 判断有没有token
+      如果没有token
+        1 都是跳转到授权页面 进行获取成功再重新跳回支付页面
+        2 先获取用户信息
+        3 执行小程序登录获取code属性
+      有token
+        直接走业务流程
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
@@ -40,4 +47,20 @@ Page({
     });
     this.setData({ cart, totalPrice, totalNum });
   },
+
+  // 点击支付按钮
+  handleOrderPay(){
+    // 获取token
+    const token = wx.getStorageSync("token")
+    // 判断是否存在
+    if(!token){
+      // 跳转到授权页面
+      wx.wx.navigateTo({
+        url: '/pages/auth/index',
+      });
+    }else{
+      // 有token 直接写逻辑
+      console.log("有 token");
+    }
+  }
 });
