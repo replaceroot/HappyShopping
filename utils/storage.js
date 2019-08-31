@@ -42,3 +42,19 @@ export const setStorageAddress = (obj)=>{
 export const getStorageAddress = ()=>{
   return wx.getStorageSync("address");
 }
+
+
+/**
+ *  设置token
+ * @param {string} token 用户的token
+ */
+export const setStorageToken = (token)=>{
+  wx.setStorageSync("token", token);
+}
+
+/**
+ * 获取token
+ */
+export const getStorageToken = ()=>{
+  return wx.getStorageSync("token");
+}

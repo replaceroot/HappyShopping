@@ -13,27 +13,33 @@
 import {request} from '../../request/index'
 import regeneratorRuntime from '../../lib/runtime/runtime';
 import {wxLogin} from '../../utils/asyncWx'
+import {setStorageToken, getStorageToken} from '../../utils/storage.js'
 Page({
     // 1 获取用户信息
     async getUserInfo(e){
-      // 获取用户的signature iv rawData encryptedData
+      try {
+        // 获取用户的signature iv rawData encryptedData
       const {signature, iv, rawData, encryptedData} = e.detail;
       // console.log(e.detail);
       // 执行小程序的登录
       const {code} = await wxLogin();
+      console.log(code);
       let postParams = {signature, iv, rawData, encryptedData, code};
       // 发送请求到第三方的服务器 来获取真正的token
       const res = await request({url:'/users/wxlogin', data:postParams, method: "post"});
       console.log(res)
-      // console.log(token);
+      console.log(token);
       // 存入token
-      // wx.setStorageSync('token', token);
+      setStorageToken(token);
 
       // 跳转到上一个页面
       wx.navigateBack({
         // delta 表示上几个页面
         delta: 1
       });
+      } catch (error) {
+        console.log(error);
+      }
         
     }
 });
