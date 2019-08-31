@@ -75,7 +75,8 @@ Page({
     cart: {},
     isAllChecked: false,
     totalNum: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    hasCart: false
   },
   // 获取收货地址
   async handleChooseAddress() {
@@ -120,7 +121,8 @@ Page({
 
     // 1 计算是否都选中了
     // every 会接收一个回调函数 当每个循环项都返回true的时候 整个cartArry的返回值才会为true
-    let isAllChecked = cartArr.every(v => v.checked);
+    // every 当是空数组调用它的时候返回值就是true
+    let isAllChecked = cartArr.length?cartArr.every(v => v.checked):false;
     // 2 计算总价格 只计算勾选的商品价格
     let totalPrice = 0;
     // 3 计算总数量
@@ -131,7 +133,8 @@ Page({
         totalNum += v.num;
       }
     });
-    this.setData({ cart, isAllChecked, totalPrice, totalNum });
+    let hasCart = cartArr.length?true:false;
+    this.setData({ cart, isAllChecked, totalPrice, totalNum, hasCart });
     wx.setStorageSync("cart", cart);
   },
 

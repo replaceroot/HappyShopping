@@ -74,12 +74,12 @@ page {
   padding: 0 10rpx;
 }
 .cart_main .cart_main_list .cart_item .cart_info_wrap .goods_price_wrap .cart_num_wrap .cart_num_edit {
-  width: 50rpx;
-  height: 50rpx;
-  border: 1rpx solid #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50rpx;
+  height: 50rpx;
+  border: 1rpx solid #ccc;
 }
 .cart_main .cart_main_list .cart_item .cart_info_wrap .goods_price_wrap .cart_num_wrap .cart_num {
   width: 50rpx;
@@ -88,6 +88,12 @@ page {
   justify-content: center;
   align-items: center;
   margin: 0 5rpx;
+}
+.cart_main .cart_main_list .empty_cart {
+  text-align: center;
+}
+.cart_main .cart_main_list .empty_cart image {
+  width: 50%;
 }
 .foot_tool {
   border-top: 1rpx solid #ccc;
