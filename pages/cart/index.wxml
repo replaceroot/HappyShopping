@@ -27,7 +27,7 @@
     >
       <!-- 复选框 -->
       <view class="cart_chk_wrap">
-        <checkbox-group bindchange="">
+        <checkbox-group bindchange="handleCheckChange" data-goodsId="{{value.goods_id}}">
           <checkbox checked="{{value.checked}}"></checkbox>
         </checkbox-group>
       </view>
@@ -42,9 +42,9 @@
         <view class="goods_price_wrap">
           <view class="goods_price">￥{{value.goods_price}}</view>
           <view class="cart_num_wrap">
-            <text class="cart_num_edit">-</text>
+            <text class="cart_num_edit" bindtap="handleCartNumEdit" data-id="{{value.goods_id}}"  data-operation="{{-1}}">-</text>
             <text class="cart_num">{{value.num}}</text>
-            <text class="cart_num_edit">+</text>
+            <text class="cart_num_edit" bindtap="handleCartNumEdit" data-id="{{value.goods_id}}" data-operation="{{1}}">+</text>
           </view>
         </view>
       </viiew>
@@ -55,7 +55,7 @@
 <view class="foot_tool">
   <!-- 全选 -->
   <view class="foot_all_check">
-    <checkbox-group bindchange="">
+    <checkbox-group bindchange="handleAllCheck">
       <checkbox checked="{{isAllChecked}}">全选</checkbox>
     </checkbox-group>
   </view>
