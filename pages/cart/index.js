@@ -60,6 +60,10 @@
       1 取消 就什么都不做
       2 确定 执行删除操作
   5 调用this.setCart(cart);
+
+7 结算按钮
+  1 当拥有了收货地址和购买的商品的时候 直接跳转到结算页面
+  2 否则 主要收货地址和购买的商品 任意一个不满足要求 都不能跳转
 */
 
 import regeneratorRuntime from "../../lib/runtime/runtime";
@@ -187,6 +191,38 @@ Page({
       cart[id].num += operation;
       // 让页面跟着发生改变
       this.setCart(cart);
+    }
+  },
+
+  // 结算按钮的点击事件
+  handlePay(){
+    // 1 判断有没有收货地址和购买的商品
+    // hasCart只表示有没有商品 没有表示该商品是否选中
+    let {address, cart} = this.data;
+    let cartArr = Object.values(cart);
+    // 只要购物车 有一个 商品 被勾选了 这个变量的值 就应该为true
+    // some 函数表示数组中有一个返回时true,那么整个函数的返回值就为true
+    let  hasCheckedCart = cartArr.some(v=>v.checked);
+    // 
+    if(!address.userName){
+      // 没有收货地址
+      wx.showToast({
+        title: '您还没有选择收货地址',
+        icon: 'none',
+        mask: true,
+      });
+        
+    }else if(!hasCheckedCart){
+      // 购物车为空
+      wx.showToast({
+        title: '您还没有选购商品',
+        icon: 'none',
+        mask: true,
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/pay/index',
+      });
     }
   }
 });
